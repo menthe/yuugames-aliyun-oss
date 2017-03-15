@@ -19,5 +19,7 @@
     	"psr-4": {
     		"Harris\\AliyunOSS\\": "src/"
 	     }
-	}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
 }
