@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
 use JohnLui\AliyunOSS;
 
-class FileUpload {
+class OSSUtils {
 	
 	private $ossClient;
 	
@@ -31,8 +31,8 @@ class FileUpload {
 		$date = Carbon::now()->format('Ymd');
 		$path = $date . '/ ' . $nName;
 		$ossKey = Config::get('fileuploads.aliyun-oss.ossPrefix') . $path;
-		$fu = new FileUpload();
-		if($fu->ossClient->uploadFile($ossKey, $mpf->getRealPath())) {
+		$oss = new OSSUtils();
+		if($oss->ossClient->uploadFile($ossKey, $mpf->getRealPath())) {
 			return $path;
 		}
 		return false;
@@ -48,21 +48,28 @@ class FileUpload {
 		$date = Carbon::now()->format('Ymd');
 		$path = $date . '/ ' . $nName;
 		$ossKey = Config::get('fileuploads.aliyun-oss.ossPrefix') . $path;
-		$fu = new FileUpload();
-		if($fu->ossClient->uploadFile($ossKey, $oPath)) {
+		$oss = new OSSUtils();
+		if($oss->ossClient->uploadFile($ossKey, $oPath)) {
 			return $path;
 		}
 		return false;
 	}
 	
-	public static function deleteOSSObject($ossKey) {
-		$fu = new FileUpload();
-		$fu->ossClient->deleteObject(config('fileuploads.aliyun-oss.ossBucket'), $ossKey);
+	public static function deleteOSSObject($path) {
+		$oss = new OSSUtils();
+		$ossKey = config('fileuploads.aliyun-oss.ossPrefix') . $path;
+		$oss->ossClient->deleteObject(config('fileuploads.aliyun-oss.ossBucket'), $ossKey);
 	}
 	
-	public static function url($ossKey, $dimension = null) {
-		$url = config('fileuploads.aliyun-oss.staticEndPoint') . config('fileuploads.aliyun-oss.ossPrefix') . $ossKey;
+	public static function url($path, $dimension = null) {
+		$ossKey = config('fileuploads.aliyun-oss.ossPrefix') . $path;
+		$url = config('fileuploads.aliyun-oss.staticEndPoint') . $ossKey;
 		return self::append($url, $dimension);
+	}
+	
+	public static function getAllObjectKey() {
+		$oss = new OSSUtils();
+		return $oss->ossClient->getAllObjectKey(config('fileuploads.aliyun-oss.ossBucket'));
 	}
 	
 	public static function append($imgUrl, $dimension) {
