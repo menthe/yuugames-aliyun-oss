@@ -55,6 +55,19 @@ class OSSUtils {
 		return false;
 	}
 	
+	public static function doUploadContent($content) {
+		$oExt = 'jpg';
+		$nName = md5(time() . rand()) . '.' . $oExt;
+		$date = Carbon::now()->format('Ymd');
+		$path = $date . '/ ' . $nName;
+		$ossKey = Config::get('fileuploads.aliyun-oss.ossPrefix') . $path;
+		$oss = new OSSUtils();
+		if($oss->ossClient->uploadContent($ossKey, $content)) {
+			return $path;
+		}
+		return false;
+	}
+	
 	public static function deleteOSSObject($path) {
 		$oss = new OSSUtils();
 		$ossKey = config('fileuploads.aliyun-oss.ossPrefix') . $path;
@@ -67,9 +80,24 @@ class OSSUtils {
 		return self::append($url, $dimension);
 	}
 	
+	public static function getObjectUrl($ossKey) {
+		return config('fileuploads.aliyun-oss.staticEndPoint') . $ossKey;
+	}
+	
 	public static function getAllObjectKey() {
 		$oss = new OSSUtils();
 		return $oss->ossClient->getAllObjectKey(config('fileuploads.aliyun-oss.ossBucket'));
+	}
+	
+	public static function getAllObjectUrls() {
+		$objectKeys = self::getAllObjectKey();
+		$data = [];
+		foreach($objectKeys as $key) {
+			$data[count($data)] = [
+				'url' => self::getObjectUrl($key),
+			];
+		}
+		return $data;
 	}
 	
 	public static function append($imgUrl, $dimension) {
