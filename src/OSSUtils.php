@@ -29,7 +29,7 @@ class OSSUtils {
 		$oExt = $mpf->getClientOriginalExtension();
 		$nName = md5($oName . time() . rand()) . '.' . $oExt;
 		$date = Carbon::now()->format('Ymd');
-		$path = $date . '/ ' . $nName;
+		$path = $date . '/' . $nName;
 		$ossKey = Config::get('fileuploads.aliyun-oss.ossPrefix') . $path;
 		$oss = new OSSUtils();
 		if($oss->ossClient->uploadFile($ossKey, $mpf->getRealPath())) {
@@ -46,7 +46,7 @@ class OSSUtils {
 		}
 		$nName = md5($oName . time() . rand()) . '.' . $oExt;
 		$date = Carbon::now()->format('Ymd');
-		$path = $date . '/ ' . $nName;
+		$path = $date . '/' . $nName;
 		$ossKey = Config::get('fileuploads.aliyun-oss.ossPrefix') . $path;
 		$oss = new OSSUtils();
 		if($oss->ossClient->uploadFile($ossKey, $oPath)) {
@@ -59,7 +59,7 @@ class OSSUtils {
 		$oExt = 'jpg';
 		$nName = md5(time() . rand()) . '.' . $oExt;
 		$date = Carbon::now()->format('Ymd');
-		$path = $date . '/ ' . $nName;
+		$path = $date . '/' . $nName;
 		$ossKey = Config::get('fileuploads.aliyun-oss.ossPrefix') . $path;
 		$oss = new OSSUtils();
 		if($oss->ossClient->uploadContent($ossKey, $content)) {
