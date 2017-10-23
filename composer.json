@@ -1,24 +1,28 @@
 {
-    "name": "menthe/yuugames-aliyun-oss",
-    "description": "Aliyun OSS SDK for YuuGames Applications",
-    "keywords": ["AliyunOSS", "YuuGames", "Harris", "HarrisWang"],
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "harris",
-            "email": "i@harris.wang"
-        }
-    ],
-    "require": {
-    	"illuminate/support": "^5.4",
-        "johnlui/aliyun-oss": "^2.0",
-        "nesbot/carbon": "^1.22"
-    },
-	"autoload": {
-    	"psr-4": {
-    		"Harris\\AliyunOSS\\": "src/"
-	     }
+	"name" : "menthe/yuugames-aliyun-oss",
+	"description" : "Aliyun OSS SDK for YuuGames Applications",
+	"keywords" : [
+		"AliyunOSS",
+		"YuuGames",
+		"Harris",
+		"HarrisWang"
+	],
+	"license" : "MIT",
+	"authors" : [{
+			"name" : "harris",
+			"email" : "i@harris.wang"
+		}
+	],
+	"require" : {
+		"illuminate/support" : "^5.4",
+		"johnlui/aliyun-oss" : "^2.2",
+		"nesbot/carbon" : "^1.22"
 	},
-	"minimum-stability": "dev",
-	"prefer-stable": true
+	"autoload" : {
+		"psr-4" : {
+			"Harris\\AliyunOSS\\" : "src/"
+		}
+	},
+	"minimum-stability" : "dev",
+	"prefer-stable" : true
 }
