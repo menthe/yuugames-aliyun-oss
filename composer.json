@@ -14,9 +14,9 @@
 		}
 	],
 	"require" : {
-		"illuminate/support" : "^5.4",
-		"johnlui/aliyun-oss" : "^2.2",
-		"nesbot/carbon" : "^1.22"
+		"illuminate/support" : "^5.7",
+		"johnlui/aliyun-oss" : "^2.2.1",
+		"nesbot/carbon" : "^2.0"
 	},
 	"autoload" : {
 		"psr-4" : {
