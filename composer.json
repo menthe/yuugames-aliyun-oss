@@ -16,7 +16,7 @@
 	"require" : {
 		"illuminate/support" : "^5.7",
 		"johnlui/aliyun-oss" : "^2.2.1",
-		"nesbot/carbon" : "^2.0"
+		"nesbot/carbon" : "^1.3"
 	},
 	"autoload" : {
 		"psr-4" : {
