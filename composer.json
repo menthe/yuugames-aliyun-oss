@@ -14,7 +14,7 @@
 		}
 	],
 	"require" : {
-		"illuminate/support" : "^7.0",
+		"illuminate/support" : "^8.0",
 		"johnlui/aliyun-oss" : "^2.2.1",
 		"nesbot/carbon" : "^2.0"
 	},
