@@ -105,7 +105,14 @@ class OSSUtils {
 			$divider = strpos($dimension, 'x');
 			$height = substr($dimension, $divider + 1);
 			$width = substr($dimension, 0, $divider);
-            return $imgUrl . "?x-oss-process=image/resize,m_fill,h_$height,w_$width";
+			if($height == 0) {
+				return $imgUrl . "?x-oss-process=image/resize,w_$width";
+			}
+			if($width == 0) {
+				return $imgUrl . "?x-oss-process=image/resize,h_$height";
+			}
+          
+            		return $imgUrl . "?x-oss-process=image/resize,m_fill,h_$height,w_$width";
 		}
 		return $imgUrl;
 	}
