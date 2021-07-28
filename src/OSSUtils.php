@@ -55,8 +55,7 @@ class OSSUtils {
 		return false;
 	}
 
-	public static function doUploadContent($content) {
-		$oExt = 'jpg';
+	public static function doUploadContent($content, $oExt = 'jpg') {
 		$nName = md5(time() . rand()) . '.' . $oExt;
 		$date = Carbon::now()->format('Ymd');
 		$path = $date . '/' . $nName;
